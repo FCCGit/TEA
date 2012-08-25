@@ -17,14 +17,15 @@ if(is_null($details["mask"])){
 
 	if(!empty($chars))
 	{
-		echo '<select name="tea_charid" id="tea_charid" >';
+		echo '<select name="tea_charid" id="tea_charid" onchange="var e=document.getElementById(\'tea_charid\');document.getElementById(\'smf_autov_username\').value=e.options[e.selectedIndex].text;document.getElementById(\'display_username\').value=e.options[e.selectedIndex].text;">';
+		echo '<option></option>';
 		foreach($chars as $char)
 		{
 			echo '<option value="'.$char['charid'].'">'.$char['name'].'</option>';
 		}
 	}
 	else
-	{	
+	{
 		$error = $teac -> get_error($teac -> data);
 		echo 'Error '.$error[0].' ('.$error[1].')<Br><select name="tea_char"><option value="-">-</option>';
 	}

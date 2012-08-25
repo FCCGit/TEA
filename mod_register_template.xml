@@ -15,5 +15,30 @@
 	// If OpenID is enabled, give the user a choice between password and OpenID.]]></add>
 		</operation>
 
+		<operation>
+			<search position="after"><![CDATA[if (currentAuthMethod == \'passwd\' && document.forms.registration.smf_autov_pwmain.value != document.forms.registration.smf_autov_pwverify.value)
+]]></search>
+			<add><![CDATA[if (document.forms.registration.smf_autov_username.value == "")
+                                {
+                                        alert("The \"Username\" field cannot be blank");
+                                        return false;
+                                }
+				]]></add>
+		</operation>		
+		
+		<operation>
+			<search position="replace"><![CDATA[<dl class="register_form">
+						<dt><strong><label for="smf_autov_username">', $txt['username'], ':</label></strong></dt>
+						<dd>
+							<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" class="input_text" />
+]]></search>
+			<add><![CDATA[<dl class="register_form">
+						<dt><strong><label for="smf_autov_username">', $txt['username'], ':</label></strong></dt>
+						<dd>
+							<input type="hidden" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" class="input_text" />
+							<input type="text" disabled="true" name="user_fake" id="display_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" class="input_text" />
+]]></add>
+		</operation>
+				
 	</file>
 </modification>
