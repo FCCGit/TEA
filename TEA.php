@@ -984,7 +984,7 @@ class TEA extends TEAC
 		$skills = NULL;
 		require_once($this -> sourcedir.'/TEA_SkillDump.php');
 		$skilllist = getSkillArray();
-		$post = array('userID' => $id, 'apiKey' => $api, 'characterID' => $charid);
+		$post = array('keyID' => $id, 'vCode' => $api, 'characterID' => $charid);
 		$xml = $this -> get_xml('charsheet', $post);
 		$xml = new SimpleXMLElement($xml);
 		if(!empty($xml -> result -> rowset[0]))
@@ -1001,7 +1001,7 @@ class TEA extends TEAC
 	function roles($id, $api, $charid)
 	{
 		$roles = NULL;
-		$post = array('userID' => $id, 'apiKey' => $api, 'characterID' => $charid);
+		$post = array('keyID' => $id, 'vCode' => $api, 'characterID' => $charid);
 		$xml = $this -> get_xml('charsheet', $post);
 	//	$xml = file_get_contents('me.xml');
 		$xml = new SimpleXMLElement($xml);
@@ -1021,7 +1021,7 @@ class TEA extends TEAC
 
 	function titles($id, $api, $charid)
 	{
-		$post = array('userID' => $id, 'apiKey' => $api, 'characterID' => $charid);
+		$post = array('keyID' => $id, 'vCode' => $api, 'characterID' => $charid);
 		$xml = $this -> get_xml('charsheet', $post);
 	//	$xml = file_get_contents('me.xml');
 		$xml = new SimpleXMLElement($xml);
@@ -1037,7 +1037,7 @@ class TEA extends TEAC
 
 	function mititia($id, $api, $charid)
 	{
-		$post = array('userID' => $id, 'apiKey' => $api, 'characterID' => $charid);
+		$post = array('keyID' => $id, 'vCode' => $api, 'characterID' => $charid);
 		$xml = $this -> get_xml('facwar', $post);
 		$xml = new SimpleXMLElement($xml);
 		$faction = $xml -> result -> factionName;

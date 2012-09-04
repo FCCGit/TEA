@@ -36,7 +36,7 @@ class TEAC
 		{
 			foreach($post as $i => $v)
 			{
-				$post[$i] = $i.'='.$v;
+				$post[$i] = $i.'='.urlencode($v);
 			}
 			$post = implode('&', $post);
 		}
@@ -46,8 +46,9 @@ class TEAC
 		{
 			$cache = $this -> get_cache($url, $post);
 		}
+		//ignore cache results, but still do the update
 		if($cache)
-			return $cache;
+		//	return $cache;
 
 		//$xml = $this -> get_site($this -> server.$url, $post);
 		$xml = file_get_contents($this -> server.$url."?".$post);
@@ -238,7 +239,7 @@ class TEAC
 
 	function standings($userid, $apikey, $charid)
 	{
-		$post = array('userID' => $userid, 'apiKey' => $apikey, 'characterID' => $charid);
+		$post = array('keyID' => $userid, 'vCode' => $apikey, 'characterID' => $charid);
 		$xml = $this -> get_xml('standings', $post);
 
 		$xml = new SimpleXMLElement($xml);
